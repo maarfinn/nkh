@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
 import AppNavigator from './src/Navigation/AppNavigation';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/Utils/store';
 import Toast from 'react-native-toast-message';
-import {Colors} from './src/Utils/Colors';
 import SplashScreen from './src/Screens/SplashScreen';
 
 const App = () => {

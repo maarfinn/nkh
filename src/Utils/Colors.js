@@ -1,8 +1,10 @@
-export const primaryColor = '#ffffff';
+export const primaryColor = '#e6e6e6';
 
 export const Colors = {
   black: '#000000',
   mainColor: '#702778',
   white: '#ffffff',
-  grey: '#e6e6e6',
+  grey: '#A0A0A0',
+  input: '#414141',
+  btnColor: '#B8B8B8',
 };

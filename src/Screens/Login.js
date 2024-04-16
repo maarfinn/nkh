@@ -1,7 +1,16 @@
 /** @format */
 
 import React, {useState} from 'react';
-import {Text, View, TextInput, TouchableOpacity, Platform} from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Platform,
+  Image,
+  ImageBackground,
+  Dimensions,
+} from 'react-native';
 import AppLogo from '../Utils/Logo';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Colors, primaryColor} from '../Utils/Colors';
@@ -9,6 +18,9 @@ import {useDispatch} from 'react-redux';
 import {loginSuccess} from '../Utils/loginReducer';
 import Toast from 'react-native-toast-message';
 import LinearGradient from 'react-native-linear-gradient';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Userlogin = ({navigation}) => {
   const dispatch = useDispatch();
@@ -50,76 +62,91 @@ const Userlogin = ({navigation}) => {
   };
 
   return (
-    <>
-      <LinearGradient
-        colors={[
-          'rgba(128,128,128,1)',
-          'rgba(0,0,0,0.9)',
-          'rgba(0,0,0,1)',
-          'rgba(0,0,0,1)',
-          'rgba(0,0,0,1)',
-          'rgba(0,0,0,1)',
-          'rgba(0,0,0,1)',
-        ]}
-        style={styles.container}>
-        <View style={{alignSelf: 'flex-start', marginBottom: 60}}>
-          <Text
-            style={{
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: '800',
-              marginBottom: 10,
-            }}>
-            Login
-          </Text>
-          <Text style={{color: Colors.white, fontSize: 18}}>
-            Join our community and Experience a seamless freelance hiring
-            process.
-          </Text>
+    <View>
+      <ImageBackground
+        source={require('../Assets/shade.png')}
+        resizeMode="cover"
+        style={{
+          height: windowHeight * 0.5,
+          width: windowWidth,
+        }}>
+        <View
+          style={{
+            padding: 20,
+            height: windowHeight,
+            alignItems: 'center',
+            justifyContent: 'center',
+            // backgroundColor: Colors.black,
+          }}>
+          <View style={{alignSelf: 'flex-start', marginBottom: 60}}>
+            <Text
+              style={{
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: '800',
+                marginBottom: 10,
+              }}>
+              Login
+            </Text>
+            <Text style={{color: Colors.white, fontSize: 18}}>
+              Join our community and Experience a seamless freelance hiring
+              process.
+            </Text>
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter your e-mail"
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={text => setEmail(text)}
+              placeholderTextColor={Colors.btnColor}
+              color={Colors.white}
+            />
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Enter your password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={!showPassword}
+              onChangeText={text => setPassword(text)}
+              placeholderTextColor={Colors.btnColor}
+              color={Colors.white}
+            />
+            <Icon
+              name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+              size={20}
+              color={Colors.white}
+              style={{width: 20, height: 20}}
+              onPress={togglePasswordVisibility}
+            />
+          </View>
+          <TouchableOpacity style={styles.button} onPress={() => handleNext()}>
+            <Text style={{color: '#000000', fontSize: 16}}>Next</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.7}>
+            <Text
+              style={{
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: '600',
+                marginTop: 30,
+              }}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.inputView}>
-          <Icon
-            name={'person-outline'}
-            size={20}
-            color="#000"
-            style={{width: 20, height: 20, marginRight: 10}}
-          />
-          <TextInput
-            style={styles.inputText}
-            placeholder="Enter your e-mail"
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText={text => setEmail(text)}
-          />
-        </View>
-        <View style={styles.inputView}>
-          <Icon
-            name={'lock-open-outline'}
-            size={20}
-            color="#000"
-            style={{width: 20, height: 20, marginRight: 10}}
-          />
-          <TextInput
-            style={styles.inputText}
-            placeholder="Enter your password"
-            autoCapitalize="none"
-            autoCorrect={false}
-            secureTextEntry={!showPassword}
-            onChangeText={text => setPassword(text)}
-          />
-          <Icon
-            name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-            size={20}
-            color="#000"
-            style={{width: 20, height: 20}}
-            onPress={togglePasswordVisibility}
-          />
-        </View>
-        <TouchableOpacity style={styles.button} onPress={() => handleNext()}>
-          <Text style={{color: '#000000', fontSize: 16}}>Next</Text>
-        </TouchableOpacity>
-      </LinearGradient>
-    </>
+      </ImageBackground>
+      <View
+        style={{
+          backgroundColor: Colors.black,
+          height: windowHeight,
+          width: windowWidth,
+          zIndex: -1,
+        }}></View>
+    </View>
   );
 };
 
@@ -130,6 +157,7 @@ const styles = {
     alignItems: 'center',
     padding: 30,
     justifyContent: 'center',
+    backgroundColor: Colors.black,
   },
   inputView: {
     height: 50,
@@ -141,7 +169,7 @@ const styles = {
     borderRadius: 3,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#e5e5e5',
+    backgroundColor: Colors.input,
     marginTop: 15,
   },
   inputText: {
@@ -150,15 +178,13 @@ const styles = {
     fontSize: 16,
   },
   button: {
-    backgroundColor: primaryColor,
+    backgroundColor: Colors.btnColor,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
-    marginTop: 20,
-    position: 'absolute',
+    borderRadius: 50,
     width: '100%',
-    bottom: Platform.OS == 'ios' ? 50 : 20,
+    marginTop: 20,
   },
 };
 
