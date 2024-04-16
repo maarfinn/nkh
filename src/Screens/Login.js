@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Platform} from 'react-native';
 import AppLogo from '../Utils/Logo';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {primaryColor} from '../Utils/Colors';
+import {Colors, primaryColor} from '../Utils/Colors';
 import {useDispatch} from 'react-redux';
 import {loginSuccess} from '../Utils/loginReducer';
 import Toast from 'react-native-toast-message';
@@ -52,8 +52,31 @@ const Userlogin = ({navigation}) => {
   return (
     <>
       <LinearGradient
-        colors={['rgba(255,255,255,0.7)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']}
+        colors={[
+          'rgba(128,128,128,1)',
+          'rgba(0,0,0,0.9)',
+          'rgba(0,0,0,1)',
+          'rgba(0,0,0,1)',
+          'rgba(0,0,0,1)',
+          'rgba(0,0,0,1)',
+          'rgba(0,0,0,1)',
+        ]}
         style={styles.container}>
+        <View style={{alignSelf: 'flex-start', marginBottom: 60}}>
+          <Text
+            style={{
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: '800',
+              marginBottom: 10,
+            }}>
+            Login
+          </Text>
+          <Text style={{color: Colors.white, fontSize: 18}}>
+            Join our community and Experience a seamless freelance hiring
+            process.
+          </Text>
+        </View>
         <View style={styles.inputView}>
           <Icon
             name={'person-outline'}
