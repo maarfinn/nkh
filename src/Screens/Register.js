@@ -14,22 +14,6 @@ import {useDispatch} from 'react-redux';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const InputField = ({placeholder, value, onChangeText, secureTextEntry}) => (
-  <View style={styles.inputView}>
-    <TextInput
-      style={styles.inputText}
-      placeholder={placeholder}
-      autoCapitalize="none"
-      autoCorrect={false}
-      onChangeText={onChangeText}
-      placeholderTextColor={Colors.btnColor}
-      color={Colors.white}
-      secureTextEntry={secureTextEntry}
-      value={value}
-    />
-  </View>
-);
-
 const Button = ({onPress, title, style}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
     <Text style={{color: Colors.white, fontSize: 16, fontWeight: '600'}}>
@@ -38,18 +22,16 @@ const Button = ({onPress, title, style}) => (
   </TouchableOpacity>
 );
 
-const UserLogin = ({navigation}) => {
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Register = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleNext = () => {
-    console.log('handleNext');
+    navigation.navigate('Email-Verify');
   };
 
   return (
@@ -76,7 +58,7 @@ const UserLogin = ({navigation}) => {
                   fontWeight: '800',
                   marginBottom: 10,
                 }}>
-                Login
+                Create Account
               </Text>
               <Text
                 style={{color: Colors.input, fontSize: 18, marginBottom: 30}}>
@@ -84,11 +66,6 @@ const UserLogin = ({navigation}) => {
                 process.
               </Text>
             </View>
-            <InputField
-              placeholder="Enter your e-mail"
-              value={email}
-              onChangeText={setEmail}
-            />
             <View style={styles.inputView}>
               <TextInput
                 style={styles.inputText}
@@ -108,77 +85,15 @@ const UserLogin = ({navigation}) => {
                 onPress={togglePasswordVisibility}
               />
             </View>
-            <Button title="Login" onPress={handleNext} />
-            <TouchableOpacity activeOpacity={0.7}>
-              <Text
-                style={{
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: '600',
-                  marginTop: 30,
-                }}>
-                Forgot Password?
-              </Text>
-            </TouchableOpacity>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginTop: 20,
-              }}>
-              <View
-                style={{
-                  height: 2,
-                  width: windowWidth * 0.4,
-                  backgroundColor: Colors.input,
-                }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: Colors.input,
-                    fontSize: 12,
-                    fontWeight: '600',
-                  }}>
-                  OR
-                </Text>
-              </View>
-              <View
-                style={{
-                  height: 2,
-                  width: windowWidth * 0.4,
-                  backgroundColor: Colors.input,
-                }}
-              />
-            </View>
-            <Button
-              title="Sign In With Google"
-              onPress={handleNext}
-              style={{
-                marginTop: 20,
-                borderColor: Colors.white,
-                borderWidth: 1,
-                backgroundColor: Colors.black,
-              }}
-            />
-            <Button
-              title="Sign In With Apple"
-              onPress={handleNext}
-              style={{
-                marginTop: 20,
-                borderColor: Colors.white,
-                borderWidth: 1,
-                backgroundColor: Colors.black,
-              }}
-            />
+            <Button title="Create" onPress={handleNext} />
           </View>
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              alignSelf: 'center',
-              marginTop: 50,
+              alignSelf: 'left',
+              marginTop: 20,
+              marginLeft: 20,
             }}>
             <Text
               style={{
@@ -187,16 +102,16 @@ const UserLogin = ({navigation}) => {
                 fontWeight: '600',
                 marginRight: 4,
               }}>
-              Haven't registered yet?
+              Have an Account?
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text
                 style={{
                   color: Colors.greenColor,
                   fontSize: 16,
                   fontWeight: '600',
                 }}>
-                Register Now
+                Login
               </Text>
             </TouchableOpacity>
           </View>
@@ -234,7 +149,7 @@ const styles = {
     fontSize: 16,
   },
   button: {
-    backgroundColor: Colors.btnColor,
+    backgroundColor: Colors.greenColor,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -244,4 +159,4 @@ const styles = {
   },
 };
 
-export default UserLogin;
+export default Register;

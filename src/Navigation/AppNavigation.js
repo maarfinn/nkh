@@ -11,6 +11,8 @@ import Products from '../Screens/Products';
 import Cart from '../Screens/Cart';
 import MyProfile from '../Screens/MyProfile';
 import ProductDetail from '../Screens/ProductDetail';
+import Register from '../Screens/Register';
+import EmailVerify from '../Screens/EmailVerify';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -101,11 +103,23 @@ const AppNavigator = () => {
             />
           </>
         ) : (
-          <Stack.Screen
-            name="Login"
-            component={Userlogin}
-            options={{headerShown: false}}
-          />
+          <>
+            <Stack.Screen
+              name="Login"
+              component={Userlogin}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Email-Verify"
+              component={EmailVerify}
+              options={{headerShown: false}}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
