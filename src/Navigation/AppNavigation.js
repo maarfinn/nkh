@@ -105,13 +105,13 @@ const AppNavigator = () => {
         ) : (
           <>
             <Stack.Screen
-              name="Login"
-              component={Userlogin}
+              name="Register"
+              component={Register}
               options={{headerShown: false}}
             />
             <Stack.Screen
-              name="Register"
-              component={Register}
+              name="Login"
+              component={Userlogin}
               options={{headerShown: false}}
             />
             <Stack.Screen
