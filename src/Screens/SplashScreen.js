@@ -16,7 +16,16 @@ const SplashScreen = () => {
           }}
         />
         <LinearGradient
-          colors={['rgba(255,255,255,0)', 'rgba(0,0,0,1)', 'rgba(0,0,0,1)']}
+          colors={[
+            'rgba(255,255,255,0)',
+            'rgba(0,0,0,0.4)',
+            'rgba(0,0,0,0.5)',
+            'rgba(0,0,0,0.7)',
+            'rgba(0,0,0,0.8)',
+            'rgba(0,0,0,1)',
+            'rgba(0,0,0,1)',
+            'rgba(0,0,0,1)',
+          ]}
           style={styles.gradient}></LinearGradient>
       </View>
       <Image
@@ -37,10 +46,10 @@ const styles = StyleSheet.create({
     marginTop: -30,
   },
   gradient: {
-    height: windowHeight * 0.4,
+    height: windowHeight * 0.6,
     width: windowWidth,
     position: 'absolute',
-    bottom: -windowHeight * 0.15,
+    bottom: -windowHeight * 0.1,
     opacity: 1,
   },
   imageContainerChild: {
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: 'center',
     resizeMode: 'contain',
-    marginTop: Platform.OS == 'ios' ? -100 : -30,
+    marginTop: Platform.OS == 'ios' ? -100 : -60,
   },
 });
 

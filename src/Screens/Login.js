@@ -13,7 +13,7 @@ import {useDispatch} from 'react-redux';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
+ 
 const InputField = ({placeholder, value, onChangeText, secureTextEntry}) => (
   <View style={styles.inputView}>
     <TextInput
