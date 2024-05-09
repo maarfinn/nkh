@@ -38,7 +38,7 @@ const Slider = () => {
   };
 
   const handleOnViewableItemsChanged = useRef(({viewableItems}) => {
-    setIndex(viewableItems[0].index);
+    setIndex(viewableItems[0]?.index);
   }).current;
 
   const viewabilityConfig = useRef({
@@ -52,12 +52,26 @@ const Slider = () => {
   };
 
   return (
-    <>
-      <View style={{height: windowHeight - 60, backgroundColor: 'white'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
+      <StatusBar backgroundColor={'#EEEEEE'} />
+      <View
+        style={{
+          height: windowHeight * 0.8 - 20,
+          backgroundColor: 'white',
+          // marginTop: -30,
+        }}>
         <FlatList
           ref={flatListRef}
           data={Slides}
-          renderItem={({item}) => <SlideItem item={item} />}
+          renderItem={({item, currIndex}) => (
+            <SlideItem
+              currIndex={currIndex}
+              item={item}
+              data={Slides}
+              scrollX={scrollX}
+              index={index}
+            />
+          )}
           horizontal
           pagingEnabled
           snapToAlignment="center"
@@ -67,24 +81,28 @@ const Slider = () => {
           viewabilityConfig={viewabilityConfig}
         />
         <Pagination data={Slides} scrollX={scrollX} index={index} />
-        <TouchableOpacity
-          onPress={goToNextSlide}
-          style={{
-            width: windowWidth - 30,
-            height: 40,
-            backgroundColor: 'blue',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'absolute',
-            bottom: -30,
-            left: 15,
-          }}>
-          <View>
-            <Text style={{color: 'white'}}>Next</Text>
-          </View>
-        </TouchableOpacity>
       </View>
-    </>
+      <TouchableOpacity
+        onPress={goToNextSlide}
+        style={{
+          width: windowWidth - 60,
+          height: 50,
+          backgroundColor: 'blue',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          bottom: 40,
+          left: 30,
+          right: 30,
+          borderRadius: 5,
+        }}>
+        <View>
+          <Text style={{color: 'white', fontWeight: '600', fontSize: 18}}>
+            {Slides.length == index + 1 ? 'Done' : 'Skip'}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
