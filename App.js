@@ -6,6 +6,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/Utils/store';
 import Toast from 'react-native-toast-message';
 import SplashScreen from './src/Screens/SplashScreen';
+import Slider from './src/component/Slider';
 
 const App = () => {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
@@ -17,13 +18,17 @@ const App = () => {
   }, []);
   return (
     // provider is used for redux
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <StatusBar translucent backgroundColor="transparent" />
-        {showSplashScreen ? <SplashScreen /> : <AppNavigator />}
-        <Toast position="top" bottomOffset={20} />
-      </PersistGate>
-    </Provider>
+    // <Provider store={store}>
+    //   <PersistGate loading={null} persistor={persistor}>
+    //     <StatusBar translucent backgroundColor="transparent" />
+    //     {showSplashScreen ? <SplashScreen /> : <AppNavigator />}
+    //     <Toast position="top" bottomOffset={20} />
+    //   </PersistGate>
+    // </Provider>
+    <>
+      <StatusBar backgroundColor={'transparent'} />
+      <Slider />
+    </>
   );
 };
 
